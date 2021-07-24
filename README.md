@@ -59,11 +59,11 @@ http localhost:8088/payments/2
 http localhost:8088/vouchers/2
 ```
 
-# 휴양소_예약시스템
-<img width="994" alt="image" src="https://user-images.githubusercontent.com/85722729/125247482-f6e26e00-e32d-11eb-8ccd-cf83ee9cae62.jpg">
+# 리조트 예약 시스템
+
 
 # Table of contents
-- [휴양소_예약시스템](#---)
+- [라조트_예약시스템](#---)
   - [서비스 시나리오](#서비스-시나리오)
   - [분석/설계](#분석설계)
     - [AS-IS 조직 (Horizontally-Aligned)](#AS-IS-조직-Horizontally-Aligned)
