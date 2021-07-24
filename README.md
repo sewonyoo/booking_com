@@ -22,9 +22,9 @@ http localhost:8082/resorts resortName="Busan" resortType="Pention" resortPrice=
 
 - 예약 및 결제요청 확인
 ```
-http localhost:8088/reservations resortId=1 memberName="sim sang joon"
-http localhost:8088/reservations resortId=2 memberName="sung jae kim"
-http localhost:8088/reservations resortId=3 memberName="kill dong hong"
+http localhost:8088/reservations resortId=1 memberName="sewon"
+http localhost:8088/reservations resortId=2 memberName="sia"
+http localhost:8088/reservations resortId=3 memberName="tina"
 
 http localhost:8088/payments  // 결제List 확인
 ```
