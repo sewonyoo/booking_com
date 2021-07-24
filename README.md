@@ -63,7 +63,7 @@ http localhost:8088/vouchers/2
 
 
 # Table of contents
-- [라조트_예약시스템](#---)
+- [리조트_예약시스템](#---)
   - [서비스 시나리오](#서비스-시나리오)
   - [분석/설계](#분석설계)
     - [AS-IS 조직 (Horizontally-Aligned)](#AS-IS-조직-Horizontally-Aligned)
@@ -88,16 +88,16 @@ http localhost:8088/vouchers/2
     
 # 서비스 시나리오
 - 기능적 요구사항(전체)
-1. 휴양소 관리자는 휴양소를 등록한다.  (기존)					
-2. 고객이 휴양소를 선택하여 예약한다.  (기존)					
-3. 예약이 확정되어 휴양소는 예약불가 상태로 바뀐다.					
-4. 고객이 예약한 휴양소를 결제한다.					
+1. 리조트 관리자는 리조트를 등록한다.  (기존)					
+2. 고객이 리조트를 선택하여 예약한다.  (기존)					
+3. 예약이 확정되어 리조트는 예약불가 상태로 바뀐다.					
+4. 고객이 예약한 리조트를 결제한다.					
 5. 결제가 완료되면 바우처가 고객에게 발송된다. 					
 6. 결제 List에서 결제 승인/취소를 할 수있다.					
 7. 결제가 취소되면 예약 취소, 리조트 예약 가능 상태가 된다.					
 8. 고객이 확정된 예약을 취소할 수 있다.					
 9. 예약이 취소되면, 결제 바우처 상태가 바뀐다					
-10. 고객은 휴양소 예약 정보를 확인 할 수 있다.	
+10. 고객은 리조트 예약 정보를 확인 할 수 있다.	
 
 - 비기능적 요구사항
 1. 트랜잭션
@@ -171,7 +171,7 @@ http localhost:8088/vouchers/2
 분석/설계 단계에서 도출된 헥사고날 아키텍처에 따라, 각 BC별로 대변되는 마이크로 서비스들을 스프링부트로 구현하였다. 구현한 각 서비스를 로컬에서 실행하는 방법은 아래와 같다 (각자의 포트넘버는 8081 ~ 808n 이다)
 
 ## 시나리오 흐름 테스트
-1. 휴양소 관리자는 휴양소를 등록한다.
+1. 리조트 관리자는 리조트를 등록한다.
 ```sh
 http aa9c6a809425d45b69b139edc5237d53-1942883713.ap-northeast-2.elb.amazonaws.com:8080/resorts resortName="Jeju" resortType="Hotel" resortPrice=100000 resortStatus="Available" resortPeriod="7/23~25"
 http aa9c6a809425d45b69b139edc5237d53-1942883713.ap-northeast-2.elb.amazonaws.com:8080/resorts resortName="Seoul" resortType="Hotel" resortPrice=100000 resortStatus="Available" resortPeriod="7/23~25"
@@ -179,14 +179,14 @@ http aa9c6a809425d45b69b139edc5237d53-1942883713.ap-northeast-2.elb.amazonaws.co
 ```
 <img width="992" alt="image" src="https://user-images.githubusercontent.com/85722851/125231090-1620d180-e315-11eb-9300-1beefa54e09c.png">
 
-2. 고객이 휴양소를 선택하여 예약한다.
+2. 고객이 리조트를 선택하여 예약한다.
 ```sh
 http aa9c6a809425d45b69b139edc5237d53-1942883713.ap-northeast-2.elb.amazonaws.com:8080/reservations resortId=2 memberName="sim sang joon"
 ```
 <img width="993" alt="image" src="https://user-images.githubusercontent.com/85722851/125231135-2769de00-e315-11eb-8b6e-f0e4711c2760.png">
 
 
-3. 예약이 확정되어 휴양소는 예약불가 상태로 바뀐다.
+3. 예약이 확정되어 리조트는 예약불가 상태로 바뀐다.
 ```sh
 http aa9c6a809425d45b69b139edc5237d53-1942883713.ap-northeast-2.elb.amazonaws.com:8080/resorts/2
 ```
@@ -200,13 +200,13 @@ http PATCH aa9c6a809425d45b69b139edc5237d53-1942883713.ap-northeast-2.elb.amazon
 <img width="994" alt="image" src="https://user-images.githubusercontent.com/85722851/125231248-5c763080-e315-11eb-9f58-0637fed3d099.png">
 
 
-5. 휴양소는 예약 가능상태로 바뀐다.
+5. 리조트는 예약 가능상태로 바뀐다.
 ```sh
 http aa9c6a809425d45b69b139edc5237d53-1942883713.ap-northeast-2.elb.amazonaws.com:8080/resorts/2
 ```
 <img width="994" alt="image" src="https://user-images.githubusercontent.com/85722851/125231271-6c8e1000-e315-11eb-92e2-bcb2897f6449.png">
 
-6. 고객은 휴양소 예약 정보를 확인 할 수 있다.
+6. 고객은 리조트 예약 정보를 확인 할 수 있다.
 ```sh
 http aa9c6a809425d45b69b139edc5237d53-1942883713.ap-northeast-2.elb.amazonaws.com:8080/myPages
 ```
@@ -505,7 +505,7 @@ kubectl apply -f resort/kubernetes/service.yaml.  #AWS service 등록
 
 * 서킷 브레이크 프레임워크 : Spring FeignClient + Hystrix 옵션을 사용
 
-- 시나리오 : 예약(reservation) -> 휴양소(resort) 예약 시 RESTful Request/Response 로 구현이 하였고, 예약 요청이 과도할 경우 circuit breaker 를 통하여 장애격리.
+- 시나리오 : 예약(reservation) -> 리조트(resort) 예약 시 RESTful Request/Response 로 구현이 하였고, 예약 요청이 과도할 경우 circuit breaker 를 통하여 장애격리.
 Hystrix 설정: 요청처리 쓰레드에서 처리시간이 610 밀리초가 넘어서기 시작하여 어느정도 유지되면 circuit breaker 수행됨
 
 ```yaml
@@ -522,7 +522,7 @@ hystrix:
 
 ```
 
-피호출 서비스(휴양소:resort) 의 임의 부하 처리 - 400 밀리초 ~ 620밀리초의 지연시간 부여
+피호출 서비스(리조트:resort) 의 임의 부하 처리 - 400 밀리초 ~ 620밀리초의 지연시간 부여
 ```java
 # (resort) ResortController.java 
 
