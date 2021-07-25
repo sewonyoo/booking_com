@@ -240,7 +240,10 @@ server:
   port: 8080
 ```
 ## 폴리글랏 퍼시스턴스
-- CQRS 를 위한 mypage 서비스만 DB를 구분하여 적용함. 인메모리 DB인 hsqldb 사용.
+- payment 서비스만 DB를 구분하여 적용함. 인메모리 DB인 hsqldb 사용.
+
+![image](https://user-images.githubusercontent.com/85722729/126897818-6ee8f1fe-307b-45f2-81f7-aae9cc727f21.png)
+
 ```
 - maypage 서비스의 pom.xml
 <!-- 
