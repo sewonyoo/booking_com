@@ -167,6 +167,10 @@ http aa9c6a809425d45b69b139edc5237d53-1942883713.ap-northeast-2.elb.amazonaws.co
 - API GateWay를 통하여 마이크로 서비스들의 진입점을 통일할 수 있다. 
 다음과 같이 GateWay를 적용하였다.
 
+gateway 서비스의 application.yml
+<img width="994" alt="image" src="https://user-images.githubusercontent.com/85722729/126897622-152497fb-cb62-420d-9ac0-2532575b8094.png">
+<img width="994" alt="image" src="https://user-images.githubusercontent.com/85722729/126897628-50568e62-07de-4d82-ba94-7b12bf6a7aa7.png">
+
 ```yaml
 - gateway 서비스의 application.yml
 <img width="994" alt="image" src="https://user-images.githubusercontent.com/85722729/126897622-152497fb-cb62-420d-9ac0-2532575b8094.png">
