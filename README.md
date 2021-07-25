@@ -133,10 +133,10 @@ http localhost:8088/vouchers/2
 <img width="994" alt="image" src="https://user-images.githubusercontent.com/85722729/125240560-3ce70400-e325-11eb-826d-8c16ca723bc4.png">
 
 ### 어그리게잇으로 묶기
-<img width="994" alt="image" src="https://user-images.githubusercontent.com/85722729/126891967-9bb48126-3c23-4162-adda-ed24fefcab84.png">
+<img width="994" alt="image" src="https://user-images.githubusercontent.com/85722729/125240563-3ce70400-e325-11eb-88b7-ae0f673b22c0.png">
 
 ### 바운디드 컨텍스트로 묶기
-<img width="994" alt="image" src="https://user-images.githubusercontent.com/85722729/125240566-3d7f9a80-e325-11eb-9602-65894469d7e8.png">
+<img width="994" alt="image" src="https://user-images.githubusercontent.com/85722729/126891967-9bb48126-3c23-4162-adda-ed24fefcab84.png">
 
 ### 폴리시 부착 (괄호는 수행주체, 폴리시 부착을 둘째단계에서 해놔도 상관 없음. 전체 연계가 초기에 드러남)
 
