@@ -85,7 +85,7 @@
 <img width="994" alt="image" src="https://user-images.githubusercontent.com/85722729/126892803-7f253f3c-b391-4451-9cb6-03fcb433dd3b.png">
 
 ### 완성된 모형
-<img width="1113" alt="image" src="https://user-images.githubusercontent.com/85722729/126716548-060efc23-a69b-4648-97a9-666c3b359fb2.png">
+<img width="1113" alt="image" src="https://user-images.githubusercontent.com/85722729/126897162-12e0a51b-eb9a-45bb-91d8-764c3bde4275.png">
 
 - View Model 추가
 - 도메인 서열
