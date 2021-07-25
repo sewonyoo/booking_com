@@ -133,7 +133,7 @@ http localhost:8088/vouchers/2
 <img width="994" alt="image" src="https://user-images.githubusercontent.com/85722729/125240560-3ce70400-e325-11eb-826d-8c16ca723bc4.png">
 
 ### 어그리게잇으로 묶기
-<img width="994" alt="image" src="https://user-images.githubusercontent.com/85722729/125240563-3ce70400-e325-11eb-88b7-ae0f673b22c0.png">
+<img width="994" alt="image" src="https://user-images.githubusercontent.com/85722729/126891967-9bb48126-3c23-4162-adda-ed24fefcab84.png">
 
 ### 바운디드 컨텍스트로 묶기
 <img width="994" alt="image" src="https://user-images.githubusercontent.com/85722729/125240566-3d7f9a80-e325-11eb-9602-65894469d7e8.png">
@@ -169,6 +169,7 @@ http localhost:8088/vouchers/2
 # 구현
 
 분석/설계 단계에서 도출된 헥사고날 아키텍처에 따라, 각 BC별로 대변되는 마이크로 서비스들을 스프링부트로 구현하였다. 구현한 각 서비스를 로컬에서 실행하는 방법은 아래와 같다 (각자의 포트넘버는 8081 ~ 808n 이다)
+
 
 ## 시나리오 흐름 테스트
 1. 리조트 관리자는 리조트를 등록한다.
