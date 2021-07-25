@@ -169,8 +169,8 @@ http aa9c6a809425d45b69b139edc5237d53-1942883713.ap-northeast-2.elb.amazonaws.co
 
 gateway 서비스의 application.yml
 
-<img width="350" alt="image" src="https://user-images.githubusercontent.com/85722729/126897622-152497fb-cb62-420d-9ac0-2532575b8094.png">
-<img width="350" alt="image" src="https://user-images.githubusercontent.com/85722729/126897628-50568e62-07de-4d82-ba94-7b12bf6a7aa7.png">
+<img width="420" alt="image" src="https://user-images.githubusercontent.com/85722729/126897622-152497fb-cb62-420d-9ac0-2532575b8094.png">
+<img width="420" alt="image" src="https://user-images.githubusercontent.com/85722729/126897628-50568e62-07de-4d82-ba94-7b12bf6a7aa7.png">
 
 ```yaml
 - gateway 서비스의 application.yml
