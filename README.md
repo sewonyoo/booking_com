@@ -185,7 +185,7 @@ http localhost:8088/vouchers/1 //바우처 무효: voucherStatus=Invalid 확인
 
 ![image](https://user-images.githubusercontent.com/85722729/126922964-f4809778-2a1d-4a5e-841c-d0820b490214.png)
 
-9. 고객은 휴양소 예약 정보를 확인 할 수 있다.
+9. 고객은 휴양소 예약 정보를 확인 할 수 있다. (CQRS)
 
 http localhost:8083/myPages
 
