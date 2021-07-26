@@ -409,7 +409,7 @@ kubectl apply -f  kubernetes/deployment.yml
 
 - payment Pod가 여러차례 재시작 한것을 확인할 수 있다.
 
-<img width="757" alt="image" src="https://user-images.githubusercontent.com/85722729/126948549-6e7d1546-63ea-4347-971c-ead6aa7ac6ee.png">
+<img width="600" alt="image" src="https://user-images.githubusercontent.com/85722729/126948549-6e7d1546-63ea-4347-971c-ead6aa7ac6ee.png">
 
 ## ConfigMap 사용
 - 시스템별로 또는 운영중에 동적으로 변경 가능성이 있는 설정들을 ConfigMap을 사용하여 관리합니다. Application에서 특정 도메일 URL을 ConfigMap 으로 설정하여 운영/개발등 목적에 맞게 변경가능합니다.
