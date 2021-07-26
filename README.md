@@ -76,7 +76,7 @@
 ### 바운디드 컨텍스트로 묶기
 <img width="994" alt="image" src="https://user-images.githubusercontent.com/85722729/126892365-1f8fc39f-5a0b-4d76-90c0-28cef50c8dda.png">
 
-### 폴리시 부착 (괄호는 수행주체, 폴리시 부착을 둘째단계에서 해놔도 상관 없음. 전체 연계가 초기에 드러남)
+### 폴리시 부착 
 
 <img width="994" alt="image" src="https://user-images.githubusercontent.com/85722729/126892658-6c731912-e57e-488a-bfed-a08d317fcb4e.png">
 
