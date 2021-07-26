@@ -320,10 +320,6 @@ Hystrix 설정: 요청처리 쓰레드에서 처리시간이 610 밀리초가 �
 
 ![image](https://user-images.githubusercontent.com/85722729/126929823-0452dd9e-fd20-4874-a37d-dda04ab63cef.png)
 
-
-
-피호출 서비스(리조트:resort) 의 임의 부하 처리 - 400 밀리초 ~ 620밀리초의 지연시간 부여
-
 #resortreservation>external>ResortService.java 수정  
 
 ![image](https://user-images.githubusercontent.com/85722729/126929969-227f6b8d-9559-40a7-9afe-8f3e4021f96e.png)
@@ -331,6 +327,8 @@ Hystrix 설정: 요청처리 쓰레드에서 처리시간이 610 밀리초가 �
 #resortServiceFallback.class 추가
 
 ![image](https://user-images.githubusercontent.com/85722729/126929980-ab10dbbb-cb6f-4f42-9395-ea68a9face26.png)
+
+피호출 서비스(휴양소:resort) 의 임의 부하 처리 - 400 밀리초 ~ 620밀리초의 지연시간 부여
 
 #reservation -> reservation.java 수정
 
