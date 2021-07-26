@@ -290,7 +290,7 @@ http localhost:8088/vouchers
 
 각 구현체들은 각자의 source repository 에 구성되었고, 각 서비스별로 Docker로 빌드를 하여, ECR 에 등록 후 deployment.yaml을 통해 EKS에 배포함.
 
-- 각서비스별 packege, build, push 실행
+- 각서비스별 package, build, push 실행
 
 
 cd resort #서비스별 폴더로 이동
