@@ -412,42 +412,28 @@ kubectl apply -f  kubernetes/deployment.yml
 <img width="600" alt="image" src="https://user-images.githubusercontent.com/85722729/126948549-6e7d1546-63ea-4347-971c-ead6aa7ac6ee.png">
 
 ## ConfigMap 사용
-- 시스템별로 또는 운영중에 동적으로 변경 가능성이 있는 설정들을 ConfigMap을 사용하여 관리합니다. Application에서 특정 도메일 URL을 ConfigMap 으로 설정하여 운영/개발등 목적에 맞게 변경가능합니다.
+- 시스템별로 또는 운영중에 동적으로 변경 가능성이 있는 설정들을 ConfigMap을 사용하여 관리할 수 있음.
+- Application에서 특정 도메일 URL을 ConfigMap 으로 설정하여 운영/개발등 목적에 맞게 변경가능
+
 configMap 생성
-```bash
-kubectl apply -f - <<EOF
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: resort-cm
-data:
-    api.resort.url: resort:8080
-EOF
-```
+
+![image](https://user-images.githubusercontent.com/85722729/126954860-ea2f11a3-3d2d-4146-b7c9-39066797f2e2.png)
+
 configmap 생성 후 조회
-<img width="881" alt="image" src="https://user-images.githubusercontent.com/85722851/125245232-470c0100-e32b-11eb-9db1-54f35d1b2e4c.png">
+
+![image](https://user-images.githubusercontent.com/85722729/126955059-a8b7ca29-124e-486a-996c-88dda6d3bba9.png)
+
 deployment.yml 변경
-```yml
-      containers:
-          ...
-          env:
-            - name: feign.resort.url
-              valueFrom:
-                configMapKeyRef:
-                  name: resort-cm
-                  key: api.resort.url
-```
+
+![image](https://user-images.githubusercontent.com/85722729/126955201-0ef49af2-722b-405b-8ed4-c9f0dc7c76ae.png)
+
+
 ResortService.java내용
-```java
-@FeignClient(name="resort", url="${feign.resort.url}")
-public interface ResortService {
 
-    @RequestMapping(method= RequestMethod.GET, value="/resorts/{id}", consumes = "application/json")
-    public Resort getResortStatus(@PathVariable("id") Long id);
+![image](https://user-images.githubusercontent.com/85722729/126956369-e23dc093-d608-455d-82a3-d9ca9369dc85.png)
 
-}
-```
+
 생성된 Pod 상세 내용 확인
-<img width="1036" alt="image" src="https://user-images.githubusercontent.com/85722851/125245075-162bcc00-e32b-11eb-80ab-81fa57e774d8.png">
+<img width="1036" alt="image" src="![image](https://user-images.githubusercontent.com/85722729/126956427-234cf141-c5c3-4889-a120-ed9208230da2.png)">
 
 
