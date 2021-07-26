@@ -437,14 +437,6 @@ mvn spring-boot:run (resort, reservation 서비스)
 
 ![image](https://user-images.githubusercontent.com/85722729/126930142-2870700f-fe33-403e-a87c-21d8544cfbd4.png)
 
-
-- siege 수행 결과
-
-![image](https://user-images.githubusercontent.com/58622901/125236603-40778c80-e31f-11eb-81a7-eeaa4863239d.png)
-
-![image](https://user-images.githubusercontent.com/58622901/125236641-4ff6d580-e31f-11eb-8659-6886b5cfacc5.png)
-
-
 ## 오토스케일 아웃
 - 앞서 CB 는 시스템을 안정되게 운영할 수 있게 해줬지만 사용자의 요청을 100% 받아들여주지 못했기 때문에 이에 대한 보완책으로 자동화된 확장 기능을 적용하고자 한다. 
 - 리조트서비스에 대한 replica 를 동적으로 늘려주도록 HPA 를 설정한다. 설정은 CPU 사용량이 20프로를 넘어서면 replica 를 10개까지 늘려준다:
