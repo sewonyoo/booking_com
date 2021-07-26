@@ -403,7 +403,7 @@ kubectl apply -f  kubernetes/deployment.yml
 - 위와 같은 경우는 어플리케이션의 Liveness probe는 Pod의 상태를 체크하다가, Pod의 상태가 비정상인 경우 kubelet을 통해서 재시작한다.
 - 임의대로 Liveness probe에서 path를 잘못된 값으로 변경 후, retry 시도 확인
 
-![image](https://user-images.githubusercontent.com/85722729/126948627-98bbd7c4-483e-4ed5-8b53-241a5bd3ff37.png)
+![image](https://user-images.githubusercontent.com/85722729/126971562-b1643354-d770-47da-bfaa-3d75e3aba499.png)
 
 
 - payment Pod가 여러차례 재시작 한것을 확인할 수 있다.
