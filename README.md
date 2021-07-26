@@ -267,10 +267,12 @@ gateway 서비스의 application.yml
 
 http PATCH localhost:8088/payments/3 paymentStatus="Approved"  // 결제 승인
 
-3.바우처 서비스 기동 바우처 내용 확인 가능
+3.바우처 서비스 기동
 
 4.바우처 내용 확인 가능
-http localhost:8088/vouchers #정상적으로바우처 생성이 확인됨
+
+http localhost:8088/vouchers 
+#정상적으로바우처 생성이 확인됨
 
 ![image](https://user-images.githubusercontent.com/85722729/126932843-033e40e9-afa2-4fb0-859d-2ac0d9695e58.png)
 
