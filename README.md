@@ -433,6 +433,7 @@ ResortService.java내용
 
 
 생성된 Pod 상세 내용 확인
-[image](https://user-images.githubusercontent.com/85722729/126956427-234cf141-c5c3-4889-a120-ed9208230da2.png)
+
+![image](https://user-images.githubusercontent.com/85722729/126976817-3428e061-a14a-40b8-911f-3284727ae430.png)
 
 
