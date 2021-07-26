@@ -246,78 +246,27 @@ gateway 서비스의 application.yml
 
 
 ## 비동기식 호출 / 시간적 디커플링 / 장애격리 / 최종 (Eventual) 일관성 테스트
-- 예약이 이루어진 후에 결제시스템에 결제요청과 마이페이지시스템에 이력을 보내는 행위는 동기식이 아니라 비 동기식으로 처리하여 예약이 블로킹 되지 않아도록 처리한다.
-- 이를 위하여 예약기록을 남긴 후에 곧바로 예약완료가 되었다는 도메인 이벤트를 카프카로 송출한다(Publish)
+- 결제 승인 후 바우처가 생성되는 부분은 동기식이 아니라 비 동기식으로 처리하여 예약이 블로킹 되지 않아도록 처리한다.
+- 이를 위하여 결제 승인 후 결제 승인완료 내용을 도메인 이벤트를 카프카로 송출한다(Publish)
  
-```java
-@Entity
-@Table(name="Reservation_table")
-public class Reservation {
- ...
-    @PostPersist
-    public void onPostPersist() throws Exception {
-        ...
-        ReservationRegistered reservationRegistered = new ReservationRegistered();
-        BeanUtils.copyProperties(this, reservationRegistered);
-        reservationRegistered.publishAfterCommit();
-    }
-}
-```
-- 결제시스템과 마이페이지시스템에서는 예약완료 이벤트에 대해서 이를 수신하여 자신의 정책을 처리하도록 PolicyHandler 를 구현한다
+![image](https://user-images.githubusercontent.com/85722729/126932366-872e0f5b-0194-4fde-a8a5-94af6e12c3fb.png)
 
-결제시스템(팀과제에서는 미구현)
-```java
+- 바우처 시스템에서는 결제 승인완료 이벤트에 대해서 이를 수신하여 자신의 정책을 처리하도록 PolicyHandler 를 구현한다
 
-@Service
-public class PolicyHandler{
-    @Autowired PaymentRepository paymentRepository;
+결제시스템
 
-    @StreamListener(KafkaProcessor.INPUT)
-    public void wheneverReservationRegistered_PaymentRequestPolicy(@Payload ReservationRegistered reservationRegistered){
+![image](https://user-images.githubusercontent.com/85722729/126932427-48943130-d838-4fa8-894a-23b24b54781f.png)
 
-        if(!reservationRegistered.validate()) return;
-        System.out.println("\n\n##### listener PaymentRequestPolicy : " + reservationRegistered.toJson() + "\n\n");
-        // Logic 구성 // 
-    }
-}
-```
-마이페이지시스템
-```java
-@Service
-public class MyPageViewHandler {
 
-    @Autowired
-    private MyPageRepository myPageRepository;
+- 바우처 시스템은 결제시스템과 완전히 분리되어있으며, 이벤트 수신에 따라 처리되기 때문에, 바우처시스템이 유지보수로 인해 잠시 내려간 상태라도 바우처생성을 받는데 문제가 없다.
 
-    @StreamListener(KafkaProcessor.INPUT)
-    public void whenReservationRegistered_then_CREATE_1 (@Payload ReservationRegistered reservationRegistered) {
-        try {
+![image](https://user-images.githubusercontent.com/85722729/126932489-22f9f16d-5372-4c0d-82ee-156dcfc5874e.png)
 
-            if (!reservationRegistered.validate()) return;
+![image](https://user-images.githubusercontent.com/85722729/126932497-7ae25254-8243-40af-b47e-ef97dd4ec3f3.png)
 
-            // view 객체 생성
-            MyPage myPage = new MyPage();
-            // view 객체에 이벤트의 Value 를 set 함
-            myPage.setId(reservationRegistered.getId());
-            myPage.setMemberName(reservationRegistered.getMemberName());
-            myPage.setResortId(reservationRegistered.getResortId());
-            myPage.setResortName(reservationRegistered.getResortName());
-            myPage.setResortStatus(reservationRegistered.getResortStatus());
-            myPage.setResortType(reservationRegistered.getResortType());
-            myPage.setResortPeriod(reservationRegistered.getResortPeriod());
-            myPage.setResortPrice(reservationRegistered.getResortPrice());
-            // view 레파지 토리에 save
-            myPageRepository.save(myPage);
-        
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-    }
-}
-```
-- 예약 시스템은 결제시스템/마이페이지 시스템과 완전히 분리되어있으며, 이벤트 수신에 따라 처리되기 때문에, 결제시스템/마이시스템이 유지보수로 인해 잠시 내려간 상태라도 예약을 받는데 문제가 없다
-```bash
-# 마이페이지 서비스는 잠시 셧다운 시키고 결제시스템은 현재 미구현
+
+
+
 
 1.리조트입력
 http localhost:8082/resorts resortName="Jeju" resortType="Hotel" resortPrice=100000 resortStatus="Available" resortPeriod="7/23~25"
