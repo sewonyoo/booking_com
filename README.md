@@ -365,37 +365,36 @@ siege -c20 -t40S -v http://payment:8080/payments
 
 <img width="533" alt="image" src="https://user-images.githubusercontent.com/85722729/126943577-1983088a-19da-4beb-b63d-d8922524edf9.png">
 
-- 오토스케일이 어떻게 되고 있는지 모니터링을 해보면 어느정도 시간이 흐른 후 스케일 아웃이 벌어지는 것을 확인할 수 있다.
+오토스케일이 어떻게 되고 있는지 모니터링을 해보면 어느정도 시간이 흐른 후 스케일 아웃이 벌어지는 것을 확인할 수 있다.
 
 <img width="704" alt="image" src="https://user-images.githubusercontent.com/85722729/126943672-b212e4c4-5515-4bab-90d2-52c54fe7f472.png">
 
 
 ## Zero-Downtime deploy (Readiness Probe)
-- 먼저 무정지 재배포가 100% 되는 것인지 확인하기 위해서 Autoscaler 이나 CB 설정을 제거하고 테스트함
-- seige로 배포중에 부하를 발생과 재배포 실행
-```bash
-root@siege:/# siege -c1 -t30S -v http://resort:8080/resorts 
+
+먼저 무정지 재배포가 100% 되는 것인지 확인하기 위해서 Autoscaler 이나 CB 설정을 제거하고 테스트함
+
+seige로 배포중에 부하를 발생과 재배포 실행
+
+kubectl exec -it siege -- /bin/bash
+root@siege:/# siege -c1 -t30S -v http://payment:8080/payments
 kubectl apply -f  kubernetes/deployment.yml 
-```
+
 - seige 의 화면으로 넘어가서 Availability 가 100% 미만으로 떨어졌는지 확인
 
-<img width="552" alt="image" src="https://user-images.githubusercontent.com/85722851/125045082-922dd600-e0d7-11eb-9128-4c9eff39654c.png">
-배포기간중 Availability 가 평소 100%에서 80% 대로 떨어지는 것을 확인. 원인은 쿠버네티스가 성급하게 새로 올려진 서비스를 READY 상태로 인식하여 서비스 유입을 진행한 것이기 때문. 
+<img width="552" alt="image" src="https://user-images.githubusercontent.com/85722729/126946366-faae9f82-f5d1-4c1f-af41-2a5dd972d73f.png">
+
+배포기간중 Availability 가 평소 100%에서 40% 대로 떨어지는 것을 확인. 원인은 쿠버네티스가 성급하게 새로 올려진 서비스를 READY 상태로 인식하여 서비스 유입을 진행한 것이기 때문. 
 
 - 이를 막기위해 Readiness Probe 를 설정함: deployment.yaml 의 readiness probe 추가
-```yml
-          readinessProbe:
-            httpGet:
-              path: '/actuator/health'
-              port: 8080
-            initialDelaySeconds: 10
-            timeoutSeconds: 2
-            periodSeconds: 5
-            failureThreshold: 10
-```
+
+<img width="552" alt="image" src="https://user-images.githubusercontent.com/85722729/126946339-2724c863-186a-4860-b0b8-7af8dff3ccfb.png">
+
 
 - 동일한 시나리오로 재배포 한 후 Availability 확인
-<img width="503" alt="image" src="https://user-images.githubusercontent.com/85722851/125044747-3cf1c480-e0d7-11eb-9c35-1091547bb099.png">
+
+<img width="503" alt="image" src="https://user-images.githubusercontent.com/85722729/126946443-8307bab6-b2f2-481c-9b2a-87dc141f8cba.png">
+
 배포기간 동안 Availability 가 100%를 유지하기 때문에 무정지 재배포가 성공한 것으로 확인됨.
 
 ## Self-healing (Liveness Probe)
