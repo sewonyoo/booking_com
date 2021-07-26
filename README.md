@@ -226,12 +226,12 @@ gateway 서비스의 application.yml
 ## 동기식 호출과 Fallback 처리
 
 - 예약(reservation)->리조트상태확인(resort) 간의 호출을 req/res로 연동하여 구현함.
-  호출 프로토콜은 이미 앞서 Rest Repository 에 의해 노출되어있는 REST 서비스를 FeignClient를 이용하여 호출
-   
+  호출 프로토콜은 이미 앞서 Rest Repository 에 의해 노출되어있는 REST 서비스를 FeignClient를 이용하여 호출   
 
 - 리조트서비스를 호출하기 위하여 Stub과 (FeignClient) 를 이용하여 Service 대행 인터페이스 (Proxy) 를 구현 
 
 #예약(reservation)->ResortService.java
+
 ![image](https://user-images.githubusercontent.com/85722729/126930717-9c40a4df-c46d-41d2-878b-83ea6c5b4b04.png)
 
 #Reservation.java
