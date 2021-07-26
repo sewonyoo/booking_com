@@ -221,22 +221,6 @@ gateway 서비스의 application.yml
 
 ![image](https://user-images.githubusercontent.com/85722729/126924302-5d361bf6-6813-4602-9df3-8e4b647f16cf.png)
 
-```
-- maypage 서비스의 pom.xml
-<!-- 
-    <dependency>
-        <groupId>com.h2database</groupId>
-        <artifactId>h2</artifactId>
-        <scope>runtime</scope>
-    </dependency>
--->
-    <dependency>
-        <groupId>org.hsqldb</groupId>
-        <artifactId>hsqldb</artifactId>
-        <version>2.4.0</version>
-        <scope>runtime</scope>
-    </dependency>
-```
 ## CQRS & Kafka
 - 타 마이크로서비스의 데이터 원본에 접근없이 내 서비스의 화면 구성과 잦은 조회가 가능하게 mypage에 CQRS 구현하였다.
 - 모든 정보는 비동기 방식으로 발행된 이벤트(예약, 예약취소, 가능상태변경)를 수신하여 처리된다.
