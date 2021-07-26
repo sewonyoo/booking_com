@@ -374,7 +374,7 @@ siege -c20 -t40S -v http://payment:8080/payments
 
 먼저 무정지 재배포가 100% 되는 것인지 확인하기 위해서 Autoscaler 이나 CB 설정을 제거하고 테스트함
 
-seige로 배포중에 부하를 발생과 재배포 실행
+seige로 배포중에 부하를 발생시키고, 재배포 실행
 
 kubectl exec -it siege -- /bin/bash
 
