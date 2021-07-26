@@ -36,6 +36,7 @@
 7. 예약이 취소되면, 결제 바우처 상태가 바뀐다					
 8. 결제가 취소되면 예약 취소, 리조트 예약 가능 상태가 된다.					
 9. 고객은 리조트 예약 정보를 확인 할 수 있다.	
+10. 
 
 - 비기능적 요구사항
 1. 트랜잭션
@@ -400,19 +401,11 @@ kubectl apply -f resort/kubernetes/service.yaml.  #AWS service 등록
 - 시나리오 : 예약(reservation) -> 리조트(resort) 예약 시 RESTful Request/Response 로 구현이 하였고, 예약 요청이 과도할 경우 circuit breaker 를 통하여 장애격리.
 Hystrix 설정: 요청처리 쓰레드에서 처리시간이 610 밀리초가 넘어서기 시작하여 어느정도 유지되면 circuit breaker 수행됨
 
-```yaml
-# application.yml
-feign:
-  hystrix:
-    enabled: true
-    
-hystrix:
-  command:
-    # 전역설정
-    default:
-      execution.isolation.thread.timeoutInMilliseconds: 610
+#reservation에 application.yml 수정
 
-```
+![image](https://user-images.githubusercontent.com/85722729/126929823-0452dd9e-fd20-4874-a37d-dda04ab63cef.png)
+
+
 
 피호출 서비스(리조트:resort) 의 임의 부하 처리 - 400 밀리초 ~ 620밀리초의 지연시간 부여
 ```java
