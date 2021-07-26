@@ -253,7 +253,6 @@ gateway 서비스의 application.yml
 
 - 바우처 시스템에서는 결제 승인완료 이벤트에 대해서 이를 수신하여 자신의 정책을 처리하도록 PolicyHandler 를 구현한다.
 
-결제시스템
 
 ![image](https://user-images.githubusercontent.com/85722729/126932427-48943130-d838-4fa8-894a-23b24b54781f.png)
 
