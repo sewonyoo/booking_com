@@ -225,56 +225,23 @@ gateway 서비스의 application.yml
 
 ## 동기식 호출과 Fallback 처리
 
-- 분석단계에서의 조건 중 하나로 예약(reservation)->리조트상태확인(resort) 간의 호출은 동기식 일관성을 유지하는 트랜잭션으로 처리하기로 하였다. 호출 프로토콜은 이미 앞서 Rest Repository 에 의해 노출되어있는 REST 서비스를 FeignClient를 이용하여 호출하였다
+- 예약(reservation)->리조트상태확인(resort) 간의 호출을 req/res로 연동하여 구현함.
+  호출 프로토콜은 이미 앞서 Rest Repository 에 의해 노출되어있는 REST 서비스를 FeignClient를 이용하여 호출
+   
 
 - 리조트서비스를 호출하기 위하여 Stub과 (FeignClient) 를 이용하여 Service 대행 인터페이스 (Proxy) 를 구현 
 
-```java
-# (reservation) ResortService.java
+#예약(reservation)->ResortService.java
+![image](https://user-images.githubusercontent.com/85722729/126930717-9c40a4df-c46d-41d2-878b-83ea6c5b4b04.png)
 
-package resortreservation.external;
+#Reservation.java
 
-@FeignClient(name="resort", url="${feign.resort.url}")
-public interface ResortService {
-    
-    @RequestMapping(method= RequestMethod.GET, value="/resorts/{id}", consumes = "application/json")
-    public Resort getResortStatus(@PathVariable("id") Long id);
+예약을 처리 하기 직전(@PrePersist)에 ResortSevice를 호출하여 서비스 상태와 Resort 세부정보도 가져옴.
 
-}
-```
-
-- 예약을 처리 하기 직전(@PrePersist)에 ResortSevice를 호출하여 서비스 상태와 Resort 세부정보도 가져온다.
-```java
-# Reservation.java (Entity)
-
-    @PrePersist
-    public void onPrePersist() throws Exception {
-        resortreservation.external.Resort resort = new resortreservation.external.Resort();
-       
-        //Resort 서비스에서 Resort의 상태를 가져옴
-        resort = ReservationApplication.applicationContext.getBean(resortreservation.external.ResortService.class)
-            .getResortStatus(resortId);
-
-        // 예약 가능상태 여부에 따라 처리
-        if ("Available".equals(resort.getResortStatus())){
-            this.setResortName(resort.getResortName());
-            this.setResortPeriod(resort.getResortPeriod());
-            this.setResortPrice(resort.getResortPrice());
-            this.setResortType(resort.getResortType());
-            this.setResortStatus("Confirmed");
-        } else {
-            throw new Exception("The resort is not in a usable status.");
-        }
-    }
-```
+![image](https://user-images.githubusercontent.com/85722729/126930763-826820f3-b8b8-422a-889e-f3c564f69dfa.png)
 
 - 동기식 호출에서는 호출 시간에 따른 타임 커플링이 발생하며, 시스템이 장애로 예약을 못받는다는 것을 확인
-<img width="1019" alt="image" src="https://user-images.githubusercontent.com/85722851/125232225-2174fc80-e317-11eb-9186-98995cf27f97.png">
-
-
-- 또한 과도한 요청시에 서비스 장애가 도미노 처럼 벌어질 수 있다. (서킷브레이커, 폴백 처리는 운영단계에서 설명한다.)
-
-
+![image](https://user-images.githubusercontent.com/85722729/126930869-f8813f76-bfc0-4ecf-9e3b-8b1699bd8dcc.png)
 
 
 ## 비동기식 호출 / 시간적 디커플링 / 장애격리 / 최종 (Eventual) 일관성 테스트
