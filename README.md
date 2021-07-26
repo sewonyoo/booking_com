@@ -111,13 +111,19 @@
 
 ## 시나리오 흐름 테스트
 1. 리조트 관리자는 리조트를 등록한다.
+
 http localhost:8082/resorts resortName="Jeju" resortType="Hotel" resortPrice=100000 resortStatus="Available" resortPeriod="7/29~30"
+
 ![image](https://user-images.githubusercontent.com/85722729/126922452-a9855be1-e98b-4b21-9e06-d0f43224730a.png)
 
 2. 고객이 리조트를 선택하여 예약한다.
+
 http localhost:8088/reservations resortId=1 memberName="kim sia"
+
 ![image](https://user-images.githubusercontent.com/85722729/126922518-7b45abe1-67fd-4b8a-825d-95e29071bd55.png)
+
 http localhost:8088/payments  // 결제List 확인
+
 ![image](https://user-images.githubusercontent.com/85722729/126922527-27d36bbb-a0bb-41a1-8829-694916bfb2fe.png)
 
 3. 예약이 확정되면 리조트는 예약불가 상태로 바뀐다.
