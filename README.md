@@ -377,7 +377,9 @@ siege -c20 -t40S -v http://payment:8080/payments
 seige로 배포중에 부하를 발생과 재배포 실행
 
 kubectl exec -it siege -- /bin/bash
+
 root@siege:/# siege -c1 -t30S -v http://payment:8080/payments
+
 kubectl apply -f  kubernetes/deployment.yml 
 
 - seige 의 화면으로 넘어가서 Availability 가 100% 미만으로 떨어졌는지 확인
@@ -388,7 +390,7 @@ kubectl apply -f  kubernetes/deployment.yml
 
 - 이를 막기위해 Readiness Probe 를 설정함: deployment.yaml 의 readiness probe 추가
 
-<img width="552" alt="image" src="https://user-images.githubusercontent.com/85722729/126946339-2724c863-186a-4860-b0b8-7af8dff3ccfb.png">
+<img width="552" alt="image" src="https://user-images.githubusercontent.com/85722729/126946717-23af65d0-e8e9-4f1f-bc18-88ce78be8e93.png">
 
 
 - 동일한 시나리오로 재배포 한 후 Availability 확인
