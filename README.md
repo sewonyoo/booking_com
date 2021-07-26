@@ -260,28 +260,27 @@ gateway 서비스의 application.yml
 
 - 바우처 시스템은 결제시스템과 완전히 분리되어있으며, 이벤트 수신에 따라 처리되기 때문에, 바우처시스템이 유지보수로 인해 잠시 내려간 상태라도 바우처생성을 받는데 문제가 없다.
 
-![image](https://user-images.githubusercontent.com/85722729/126932489-22f9f16d-5372-4c0d-82ee-156dcfc5874e.png)
+1.바우처시스템 kill
 
-![image](https://user-images.githubusercontent.com/85722729/126932497-7ae25254-8243-40af-b47e-ef97dd4ec3f3.png)
+![image](https://user-images.githubusercontent.com/85722729/126932762-8daf27f1-87c1-4bc6-b803-57b38d19ed7e.png)
+
+2.결제 승인
+
+http PATCH localhost:8088/payments/3 paymentStatus="Approved"  // 결제 승인
+
+3.바우처 서비스 기동 바우처 내용 확인 가능
+
+4.바우처 내용 확인 가능
+http localhost:8088/vouchers #정상적으로바우처 생성이 확인됨
+
+![image](https://user-images.githubusercontent.com/85722729/126932843-033e40e9-afa2-4fb0-859d-2ac0d9695e58.png)
+
+![image](https://user-images.githubusercontent.com/85722729/126932865-f3a8570d-f23f-46b5-ba94-51b1c73df987.png)
 
 
 
 
 
-1.리조트입력
-http localhost:8082/resorts resortName="Jeju" resortType="Hotel" resortPrice=100000 resortStatus="Available" resortPeriod="7/23~25"
-http localhost:8082/resorts resortName="Seoul" resortType="Hotel" resortPrice=100000 resortStatus="Available" resortPeriod="7/23~25"
-
-2.예약입력
-http localhost:8081/reservations resortId=2 memberName="sim sang joon" 
-http localhost:8081/reservations #예약 정상 처리 확인
-
-3.마이페이지서비스 기동
-
-4.마이페이지확인
-http localhost:8083/myPages #정상적으로 마이페이지에서 예약 이력이 확인 됨
-
-```
 
 
 # 운영
