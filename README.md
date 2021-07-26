@@ -363,10 +363,11 @@ kubectl autoscale deployment payment --cpu-percent=20 --min=1 --max=3
 
 siege -c20 -t40S -v http://payment:8080/payments
 
-<img width="533" alt="image" src="https://user-images.githubusercontent.com/85722729/126941986-7ae7070a-a7fe-4a5a-bee2-69915b6780cf.png">
+<img width="533" alt="image" src="https://user-images.githubusercontent.com/85722729/126943577-1983088a-19da-4beb-b63d-d8922524edf9.png">
 
-- 오토스케일이 어떻게 되고 있는지 모니터링을 해보면 어느정도 시간이 흐른 후 스케일 아웃이 벌어지는 것을 확인할 수 있다:
-<img width="704" alt="image" src="https://user-images.githubusercontent.com/85722729/126941824-c63d1d75-0d53-404e-b012-652af5741547.png">
+- 오토스케일이 어떻게 되고 있는지 모니터링을 해보면 어느정도 시간이 흐른 후 스케일 아웃이 벌어지는 것을 확인할 수 있다.
+
+<img width="704" alt="image" src="https://user-images.githubusercontent.com/85722729/126943672-b212e4c4-5515-4bab-90d2-52c54fe7f472.png">
 
 
 ## Zero-Downtime deploy (Readiness Probe)
