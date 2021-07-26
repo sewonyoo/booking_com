@@ -361,6 +361,9 @@ kubectl autoscale deployment resort --cpu-percent=20 --min=1 --max=10
 
 siege -c20 -t100S -v http://resort:8080/resorts 
 
+![image](https://user-images.githubusercontent.com/85722729/126941824-c63d1d75-0d53-404e-b012-652af5741547.png)
+
+
 
 <img width="533" alt="image" src="https://user-images.githubusercontent.com/85722851/125200066-20ef4e00-e2a4-11eb-893e-7407615daa18.png">
 
