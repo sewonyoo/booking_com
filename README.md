@@ -408,6 +408,41 @@ Hystrix 설정: 요청처리 쓰레드에서 처리시간이 610 밀리초가 �
 
 
 피호출 서비스(리조트:resort) 의 임의 부하 처리 - 400 밀리초 ~ 620밀리초의 지연시간 부여
+
+#resortreservation>external>ResortService.java 수정  
+
+![image](https://user-images.githubusercontent.com/85722729/126929969-227f6b8d-9559-40a7-9afe-8f3e4021f96e.png)
+
+#resortServiceFallback.class 추가
+
+![image](https://user-images.githubusercontent.com/85722729/126929980-ab10dbbb-cb6f-4f42-9395-ea68a9face26.png)
+
+#reservation -> reservation.java 수정
+
+![image](https://user-images.githubusercontent.com/85722729/126930021-ce453a1f-808f-4efd-b051-44ff83d7e648.png)
+
+#ResortController.java 수정
+
+![image](https://user-images.githubusercontent.com/85722729/126930045-ec5cd29b-4b20-493b-9a32-3af2ff1bd75e.png)
+
+#resort, reservation 서비스 구동
+mvn spring-boot:run (resort, reservation 서비스)
+
+휴양소 추가 : http http://localhost:8082/resorts resortName="Jeju" resortType="Hotel" resortPrice=100000 resortStatus="Available" resortPeriod="7/1~2"
+
+휴양소 예약 : siege -v -c100 -t10S -r10 --content-type "application/json" 'http://localhost:8081/reservations/ POST {"resortId":1, "memberName":"SW"}'
+            //100명이 10초동안 부하
+            
+![image](https://user-images.githubusercontent.com/85722729/126930137-87dba440-5054-49b3-a3f8-30272d519b73.png)
+
+![image](https://user-images.githubusercontent.com/85722729/126930142-2870700f-fe33-403e-a87c-21d8544cfbd4.png)
+
+
+
+
+
+
+
 ```java
 # (resort) ResortController.java 
 
