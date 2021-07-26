@@ -218,17 +218,17 @@ gateway 서비스의 application.yml
 
 
 ## 폴리글랏 퍼시스턴스
-- payment 서비스만 DB를 구분하여 적용함. 인메모리 DB인 hsqldb 사용.
+- payment 서비스만 DB를 구분하여 적용함. 인메모리 DB인 hsqldb 사용하였다.
 
 ![image](https://user-images.githubusercontent.com/85722729/126924302-5d361bf6-6813-4602-9df3-8e4b647f16cf.png)
 
 
 ## 동기식 호출과 Fallback 처리
 
-- 예약(reservation)->리조트상태확인(resort) 간의 호출을 req/res로 연동하여 구현함.
-  호출 프로토콜은 이미 앞서 Rest Repository 에 의해 노출되어있는 REST 서비스를 FeignClient를 이용하여 호출   
+- 예약(reservation)->리조트상태확인(resort) 간의 호출을 req/res로 연동하여 구현하였다
+  호출 프로토콜은 이미 앞서 Rest Repository 에 의해 노출되어있는 REST 서비스를 FeignClient를 이용하여 호출.
 
-- 리조트서비스를 호출하기 위하여 Stub과 (FeignClient) 를 이용하여 Service 대행 인터페이스 (Proxy) 를 구현 
+- 리조트서비스를 호출하기 위하여 Stub과 (FeignClient) 를 이용하여 Service 대행 인터페이스 (Proxy) 를 구현하였다.
 
 #예약(reservation)->ResortService.java
 
@@ -236,22 +236,22 @@ gateway 서비스의 application.yml
 
 #Reservation.java
 
-예약을 처리 하기 직전(@PrePersist)에 ResortSevice를 호출하여 서비스 상태와 Resort 세부정보도 가져옴.
+예약을 처리 하기 직전(@PrePersist)에 ResortSevice를 호출하여 서비스 상태와 Resort 세부정보도 가져온다.
 
 ![image](https://user-images.githubusercontent.com/85722729/126930763-826820f3-b8b8-422a-889e-f3c564f69dfa.png)
 
-동기식 호출에서는 호출 시간에 따른 타임 커플링이 발생하며, 시스템이 장애로 예약을 못받는다는 것을 확인
+동기식 호출에서는 호출 시간에 따른 타임 커플링이 발생하며, 시스템이 장애로 예약을 못받는다는 것을 확인하였다.
 
 ![image](https://user-images.githubusercontent.com/85722729/126930869-f8813f76-bfc0-4ecf-9e3b-8b1699bd8dcc.png)
 
 
 ## 비동기식 호출 / 시간적 디커플링 / 장애격리 / 최종 (Eventual) 일관성 테스트
-- 결제 승인 후 바우처가 생성되는 부분은 동기식이 아니라 비 동기식으로 처리하여 예약이 블로킹 되지 않아도록 처리한다.
+- 결제 승인 후 바우처생성을 요청하는 것은 동기식이 아니라 비 동기식으로 처리하여 결제승인 완료가 블로킹 되지 않아도록 처리한다.
 - 이를 위하여 결제 승인 후 결제 승인완료 내용을 도메인 이벤트를 카프카로 송출한다(Publish)
  
 ![image](https://user-images.githubusercontent.com/85722729/126932366-872e0f5b-0194-4fde-a8a5-94af6e12c3fb.png)
 
-- 바우처 시스템에서는 결제 승인완료 이벤트에 대해서 이를 수신하여 자신의 정책을 처리하도록 PolicyHandler 를 구현한다
+- 바우처 시스템에서는 결제 승인완료 이벤트에 대해서 이를 수신하여 자신의 정책을 처리하도록 PolicyHandler 를 구현한다.
 
 결제시스템
 
