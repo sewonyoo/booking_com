@@ -127,49 +127,63 @@ http localhost:8088/payments  // 결제List 확인
 ![image](https://user-images.githubusercontent.com/85722729/126922527-27d36bbb-a0bb-41a1-8829-694916bfb2fe.png)
 
 3. 예약이 확정되면 리조트는 예약불가 상태로 바뀐다.
+
 http localhost:8088/resorts 
+
 ![image](https://user-images.githubusercontent.com/85722729/126922561-9103e1b9-c485-40fa-bc53-60ec653ecd94.png)
 
 4. 고객이 예약한 리조트를 결제승인한다.
+
 http PATCH localhost:8088/payments/1 paymentStatus="Approved" 
+
 ![image](https://user-images.githubusercontent.com/85722729/126922698-acbd5797-2048-422f-8d8e-1f7a92e7a7f9.png)
 
 5. 결제승인이 완료되면 바우처가 고객에게 발송된다
+
 http localhost:8088/vouchers  // 바우처 확인(voucherStatus=Valid)
+
 ![image](https://user-images.githubusercontent.com/85722729/126922781-55874274-1366-46a6-a43e-2a4d7e703c5d.png)
 
 6. 고객이 확정된 예약을 취소할 수 있다.
+
 http PATCH localhost:8088/reservations/3 resortStatus="Cancelled" // 예약 취소
+
 ![image](https://user-images.githubusercontent.com/85722729/126922824-7f09d8d2-7582-4b6e-92fb-e4cfbc9c967e.png)
 
 7. 예약이 취소되면, 결제 바우처 상태가 바뀐다
+
 http localhost:8088/payments/3   //결제 취소 확인
+
 ![image](https://user-images.githubusercontent.com/85722729/126922855-0d3c6f3b-6bdb-4976-a18a-0c96db33761e.png)
 
 http localhost:8088/vouchers/3   // 바우처 무효: voucherStatus=Invalid 확인
+
 ![image](https://user-images.githubusercontent.com/85722729/126922890-2936f141-63e8-46e0-aed4-d03843b8fa8e.png)
 
 8.  결제가 취소되면 예약 취소, 리조트 예약 가능 상태가 된다. 
+
 http PATCH localhost:8088/payments/1 paymentStatus="Cancelled"
+
 ![image](https://user-images.githubusercontent.com/85722729/126922916-d1317fc1-a9b5-41e8-a00d-cd845c504531.png)
 
 
 http localhost:8081/reservations/1 // 예약 취소: resortStatus=Cancelled 확인 
+
 ![image](https://user-images.githubusercontent.com/85722729/126922935-52ada0e2-f349-4b41-9a4a-2637fcadecbd.png)
 
 http localhost:8082/resorts/1 // 리조트 예약가능: resortStatus=Available 확인
+
 ![image](https://user-images.githubusercontent.com/85722729/126922943-52ee07b4-0704-4d96-879a-c2cba5faae90.png)
 
 http localhost:8088/vouchers/1 //바우처 무효: voucherStatus=Invalid 확인 
+
 ![image](https://user-images.githubusercontent.com/85722729/126922964-f4809778-2a1d-4a5e-841c-d0820b490214.png)
 
 9. 고객은 휴양소 예약 정보를 확인 할 수 있다.
+
 http localhost:8083/myPages
+
 ![image](https://user-images.githubusercontent.com/85722729/126922980-fb4967a4-4027-4596-ae6f-ea1dc27ca3a2.png)
-
-
-
-
 
 ## DDD 의 적용
 - 위 이벤트 스토밍을 통해 식별된 Micro Service 전체 5개 중 3개를 구현하였으며 그 중 mypage는 CQRS를 위한 서비스이다.
