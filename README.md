@@ -219,7 +219,7 @@ gateway 서비스의 application.yml
 ## 폴리글랏 퍼시스턴스
 - payment 서비스만 DB를 구분하여 적용함. 인메모리 DB인 hsqldb 사용.
 
-![image](https://user-images.githubusercontent.com/85722729/126897818-6ee8f1fe-307b-45f2-81f7-aae9cc727f21.png)
+![image](https://user-images.githubusercontent.com/85722729/126924302-5d361bf6-6813-4602-9df3-8e4b647f16cf.png)
 
 ```
 - maypage 서비스의 pom.xml
