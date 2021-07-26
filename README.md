@@ -185,6 +185,9 @@ http localhost:8083/myPages
 
 ![image](https://user-images.githubusercontent.com/85722729/126922980-fb4967a4-4027-4596-ae6f-ea1dc27ca3a2.png)
 
+![image](https://user-images.githubusercontent.com/85722729/126923490-db0aae66-afd3-4fa6-b33b-944f3af92ffd.png)
+
+
 ## DDD 의 적용
 - 위 이벤트 스토밍을 통해 식별된 Micro Service 전체 5개 중 3개를 구현하였으며 그 중 mypage는 CQRS를 위한 서비스이다.
 
