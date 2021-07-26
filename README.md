@@ -353,7 +353,7 @@ mvn spring-boot:run (resort, reservation 서비스)
 
 ## 오토스케일 아웃
 
-- payment서비스에 대한 replica 를 동적으로 늘려주도록 HPA 를 설정한다. 설정은 CPU 사용량이 20프로를 넘어서면 replica 를 10개까지 늘려준다
+- payment서비스에 대한 replica 를 동적으로 늘려주도록 HPA 를 설정한다. 설정은 CPU 사용량이 20프로를 넘어서면 replica 를 3개까지 늘려준다
 
 오토스케일 설정
 
