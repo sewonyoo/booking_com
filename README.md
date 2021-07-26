@@ -424,7 +424,7 @@ configmap 생성 후 조회
 
 deployment.yml 변경
 
-![image](https://user-images.githubusercontent.com/85722729/126955201-0ef49af2-722b-405b-8ed4-c9f0dc7c76ae.png)
+![image](https://user-images.githubusercontent.com/85722729/126971939-0b09274a-8b28-44bd-b900-d4847d0ca15e.png)
 
 
 ResortService.java내용
