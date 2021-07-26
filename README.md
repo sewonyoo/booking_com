@@ -290,9 +290,9 @@ http localhost:8088/vouchers
 
 각 구현체들은 각자의 source repository 에 구성되었고, 각 서비스별로 Docker로 빌드를 하여, ECR 에 등록 후 deployment.yaml을 통해 EKS에 배포함.
 
-```
 - 각서비스별 packege, build, push 실행
-```bash
+
+
 cd resort #서비스별 폴더로 이동
 
 mvn package -B -Dmaven.test.skip=true -각서비스 들어가서 실행
@@ -300,15 +300,13 @@ mvn package -B -Dmaven.test.skip=true -각서비스 들어가서 실행
 docker build -t 879772956301.dkr.ecr.ap-southeast-1.amazonaws.com/user14-resort:latest .
 docker push 879772956301.dkr.ecr.ap-southeast-1.amazonaws.com/user14-resort:latest
 
+![image](https://user-images.githubusercontent.com/85722729/126939230-038a0b24-5c48-4954-97d1-acb4396cc680.png)
 
 kubectl apply -f deployall.yml #AWS deploy 수행
 
 - 최종 Deploy완료
 
 ![image](https://user-images.githubusercontent.com/85722729/126938786-6871bb2a-f9ac-4047-ba2b-ec6d5c1bd12d.png)
-
-
-
 
 ## 동기식 호출 / 서킷 브레이킹 / 장애격리
 
