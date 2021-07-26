@@ -434,6 +434,6 @@ ResortService.java내용
 
 
 생성된 Pod 상세 내용 확인
-<img width="1036" alt="image" src="![image](https://user-images.githubusercontent.com/85722729/126956427-234cf141-c5c3-4889-a120-ed9208230da2.png)">
+[image](https://user-images.githubusercontent.com/85722729/126956427-234cf141-c5c3-4889-a120-ed9208230da2.png)
 
 
