@@ -110,6 +110,12 @@
 
 
 ## 시나리오 흐름 테스트
+
+포트생성확인
+
+![image](https://user-images.githubusercontent.com/85722729/126923773-42a6b34d-07ef-42fd-8de2-e2525f3bcf09.png)
+
+
 1. 리조트 관리자는 리조트를 등록한다.
 
 http localhost:8082/resorts resortName="Jeju" resortType="Hotel" resortPrice=100000 resortStatus="Available" resortPeriod="7/29~30"
