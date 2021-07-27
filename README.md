@@ -363,7 +363,7 @@ http afccfbe2db057485eb047d17af2884c1-2134161889.ap-southeast-1.elb.amazonaws.co
 
 ![image](https://user-images.githubusercontent.com/85722729/126930021-ce453a1f-808f-4efd-b051-44ff83d7e648.png)
 
-피호출 서비스(리조트:resort) 의 임의 부하 처리 - 400 밀리초 ~ 620밀리초의 지연시간 부여
+임의 부하 처리 - 400 밀리초 ~ 620밀리초의 지연시간 부여
 
 #ResortController.java 수정
 
