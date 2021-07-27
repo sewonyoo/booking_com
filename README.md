@@ -303,6 +303,7 @@ cd resort #서비스별 폴더로 이동
 mvn package -B -Dmaven.test.skip=true 
 
 docker build -t 879772956301.dkr.ecr.ap-southeast-1.amazonaws.com/user14-resort:latest .
+
 docker push 879772956301.dkr.ecr.ap-southeast-1.amazonaws.com/user14-resort:latest
 
 ![image](https://user-images.githubusercontent.com/85722729/126939230-038a0b24-5c48-4954-97d1-acb4396cc680.png)
