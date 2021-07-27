@@ -314,6 +314,31 @@ kubectl apply -f deployall.yml #AWS deploy 수행, service 등록
 
 ![image](https://user-images.githubusercontent.com/85722729/126938786-6871bb2a-f9ac-4047-ba2b-ec6d5c1bd12d.png)
 
+
+리조트 등록
+
+http afccfbe2db057485eb047d17af2884c1-2134161889.ap-southeast-1.elb.amazonaws.com:8080/resorts resortName="Jeju" resortType="Hotel" resortPrice=100000 resortStatus="Available" resortPeriod="7/29~30"
+
+![image](https://user-images.githubusercontent.com/85722729/127078688-221e8078-d91a-4ac6-8878-f3a910df3044.png)
+
+리조트 예약
+
+http afccfbe2db057485eb047d17af2884c1-2134161889.ap-southeast-1.elb.amazonaws.com:8080/reservations resortId=2 memberName="kim sia"
+
+![image](https://user-images.githubusercontent.com/85722729/127078829-d7069305-404e-4461-9b1b-527529915a75.png)
+
+결제 승인
+
+http PATCH afccfbe2db057485eb047d17af2884c1-2134161889.ap-southeast-1.elb.amazonaws.com:8080/payments/1 paymentStatus="Approved"
+
+![image](https://user-images.githubusercontent.com/85722729/127078913-f6409797-6434-4524-8329-8f5a4dc38cdf.png)
+
+마이페이지 (CQRS)
+
+http afccfbe2db057485eb047d17af2884c1-2134161889.ap-southeast-1.elb.amazonaws.com:8080/myPages
+
+![image](https://user-images.githubusercontent.com/85722729/127079042-a6fb4684-1ca2-4b73-8559-c211a6f125fc.png)
+
 ## 동기식 호출 / 서킷 브레이킹 / 장애격리
 
 * 서킷 브레이크 프레임워크 : Spring FeignClient + Hystrix 옵션을 사용
