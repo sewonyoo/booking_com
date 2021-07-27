@@ -189,7 +189,7 @@ http localhost:8088/vouchers/1 //바우처 무효: voucherStatus=Invalid 확인
 
 ![image](https://user-images.githubusercontent.com/85722729/126922964-f4809778-2a1d-4a5e-841c-d0820b490214.png)
 
-9. 고객은 휴양소 예약 정보를 확인 할 수 있다. (CQRS)
+9. 고객은 리조트 예약 정보를 확인 할 수 있다. (CQRS)
 
 http localhost:8083/myPages
 
@@ -359,7 +359,7 @@ http afccfbe2db057485eb047d17af2884c1-2134161889.ap-southeast-1.elb.amazonaws.co
 
 ![image](https://user-images.githubusercontent.com/85722729/126929980-ab10dbbb-cb6f-4f42-9395-ea68a9face26.png)
 
-피호출 서비스(휴양소:resort) 의 임의 부하 처리 - 400 밀리초 ~ 620밀리초의 지연시간 부여
+피호출 서비스(리조트:resort) 의 임의 부하 처리 - 400 밀리초 ~ 620밀리초의 지연시간 부여
 
 #reservation -> reservation.java 수정
 
@@ -372,9 +372,9 @@ http afccfbe2db057485eb047d17af2884c1-2134161889.ap-southeast-1.elb.amazonaws.co
 #resort, reservation 서비스 구동
 mvn spring-boot:run (resort, reservation 서비스)
 
-휴양소 추가 : http http://localhost:8082/resorts resortName="Jeju" resortType="Hotel" resortPrice=100000 resortStatus="Available" resortPeriod="7/1~2"
+리조트 추가 : http http://localhost:8082/resorts resortName="Jeju" resortType="Hotel" resortPrice=100000 resortStatus="Available" resortPeriod="7/1~2"
 
-휴양소 예약 : siege -v -c100 -t10S -r10 --content-type "application/json" 'http://localhost:8081/reservations/ POST {"resortId":1, "memberName":"SW"}'
+ 예약 : siege -v -c100 -t10S -r10 --content-type "application/json" 'http://localhost:8081/reservations/ POST {"resortId":1, "memberName":"SW"}'
             //100명이 10초동안 부하
             
 ![image](https://user-images.githubusercontent.com/85722729/126930137-87dba440-5054-49b3-a3f8-30272d519b73.png)
