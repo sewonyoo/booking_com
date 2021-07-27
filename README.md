@@ -391,6 +391,8 @@ kubectl apply -f  kubernetes/deployment.yml
 
 <img width="552" alt="image" src="https://user-images.githubusercontent.com/85722729/126946717-23af65d0-e8e9-4f1f-bc18-88ce78be8e93.png">
 
+ kubelet은 컨테이너가 시작된 후 10초 후에 첫 번째 준비 상태 프로브를 보냅니다. 이렇게 하면 goproxy포트 8080 의 컨테이너에 연결을 시도합니다 . 프로브가 성공하면 Pod가 준비된 것으로 표시됩니다. kubelet은 5초마다 이 검사를 계속 실행합니다.
+
 
 - 동일한 시나리오로 재배포 한 후 Availability 확인
 
