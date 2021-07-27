@@ -71,9 +71,13 @@
 <img width="994" alt="image" src="https://user-images.githubusercontent.com/85722729/125240560-3ce70400-e325-11eb-826d-8c16ca723bc4.png">
 
 ### 어그리게잇으로 묶기
+
+같은 Entity를 사용하는 연관있는 도메인 이벤트들의 집단
 <img width="994" alt="image" src="https://user-images.githubusercontent.com/85722729/125240563-3ce70400-e325-11eb-88b7-ae0f673b22c0.png">
 
 ### 바운디드 컨텍스트로 묶기
+
+시스템 경계 구분
 <img width="994" alt="image" src="https://user-images.githubusercontent.com/85722729/126892365-1f8fc39f-5a0b-4d76-90c0-28cef50c8dda.png">
 
 ### 폴리시 부착 
