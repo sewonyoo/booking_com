@@ -344,7 +344,8 @@ http afccfbe2db057485eb047d17af2884c1-2134161889.ap-southeast-1.elb.amazonaws.co
 * 서킷 브레이크 프레임워크 : Spring FeignClient + Hystrix 옵션을 사용
 
 - 시나리오 : 예약(reservation) -> 리조트(resort) 예약 시 RESTful Request/Response 로 구현이 하였고, 예약 요청이 과도할 경우 circuit breaker 를 통하여 장애격리.
-Hystrix 설정: 요청처리 쓰레드에서 처리시간이 610 밀리초가 넘어서기 시작하여 어느정도 유지되면 circuit breaker 수행됨
+
+ystrix 설정: 요청처리 쓰레드에서 처리시간이 610 밀리초가 넘어서기 시작하여 어느정도 유지되면 circuit breaker 수행됨
 
 #reservation에 application.yml 수정
 
