@@ -245,7 +245,7 @@ gateway 서비스의 application.yml
 
 ![image](https://user-images.githubusercontent.com/85722729/126930763-826820f3-b8b8-422a-889e-f3c564f69dfa.png)
 
-동기식 호출에서는 호출 시간에 따른 타임 커플링이 발생하며, 시스템이 장애로 예약을 못받는다는 것을 확인하였다.
+리조트 서비스를 kill하고 예약을 진행해보았더니, 동기식 호출에서는 호출 시간에 따른 타임 커플링이 발생하며, 시스템이 장애로 예약을 못받는다는 것을 확인하였다.
 
 ![image](https://user-images.githubusercontent.com/85722729/126930869-f8813f76-bfc0-4ecf-9e3b-8b1699bd8dcc.png)
 
